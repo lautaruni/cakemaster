@@ -11,6 +11,11 @@ use Redirect;
 
 class TypeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $types=Type::all();
         return view('type.index',['types'=>$types]);

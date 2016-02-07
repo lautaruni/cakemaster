@@ -17,10 +17,6 @@ Route::get('api/getbest/','ApiController@getBestsCakes');
 Route::resource('api','ApiController');
 //Route::post('/api/savecake','ApiController@saveCake');
 
-/* ADMIN ROUTES */
-Route::resource('cakes','CakeController');
-Route::resource('ingredients','IngredientController');
-Route::resource('types','TypeController');
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +29,11 @@ Route::resource('types','TypeController');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+    Route::resource('cakes','CakeController');
+	Route::resource('ingredients','IngredientController');
+	Route::resource('types','TypeController');
 });

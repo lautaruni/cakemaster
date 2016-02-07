@@ -149,14 +149,17 @@ $('#btn-saveCake').click(function(){
 	            type: 'get',
 	            dataType: 'json',
 	            success: function (data) {
-	            	alert(data.message);
+	            	if(data.message=="ok"){
+	            		$('#cake_message').removeClass('alert alert-dismissible alert-danger').html("");
+	            		$('#cake_message').addClass('alert alert-dismissible alert-success').html('<p>¡Muy bien! Torta Guardada. Ahora podés fijarte si es una de las mejores <a href="#thebest">acá</a></p>');
+	            	}
 	            	// actualizo las mejores tortas.
 	            	getBests();
 	            },
 	            data: cake
 	        });
 	}else{
-		alert("Completame el nombre!");
+		$('#cake_message').addClass('alert alert-dismissible alert-danger').html('<p>Para que todo vaya bien... ponele un nombre de la torta ;)</p>');
 	}
 });
 //

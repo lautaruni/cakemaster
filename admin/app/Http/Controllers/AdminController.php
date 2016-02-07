@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function index(){
-    	return view('cake.index');
-    }
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 }
